@@ -11,6 +11,7 @@ import Header from "./component/header/header";
 // import pages here
 import Home from "./pages/home/home";
 import Charts from "./pages/chart/chart";
+import Config from "./pages/config/config";
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <Switch>
           <Route default path="/home" component={Home} />
           <Route exact path="/chart" component={Charts} />
+          <Route exact path="/config" component={Config} />
         </Switch>
       </Router>
     </div>

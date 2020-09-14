@@ -46,6 +46,15 @@ export default function Header() {
       >
         Chart
       </Button>
+      <Button
+        key="3"
+        type="link"
+        onClick={() => {
+          history.push("./config");
+        }}
+      >
+        Config
+      </Button>
     </div>
   );
   return (
