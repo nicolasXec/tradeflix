@@ -17,6 +17,21 @@ export default function Config() {
   const onChangehandler = (value) => {
     setinputValue(value);
   };
+
+  const children = [];
+  for (let i = 0; i < 240; i = i + 5) {
+    children.push(<Option key={i}>{i + "min"}</Option>);
+  }
+
+  const children1 = [];
+  for (let i = 0; i < 10; i++) {
+    children1.push(<Option key={i}>{i}</Option>);
+  }
+
+  function handleChangeselect(value) {
+    console.log(`selected ${value}`);
+  }
+
   return (
     <div>
       <Divider orientation="left">Indicator Config</Divider>
@@ -53,7 +68,10 @@ export default function Config() {
         <Option value="Yiminghe">mfi</Option>
       </Select>
       <Row>
-        <Col span={12}>
+        <Col span={4}>
+          <p>high band</p>
+        </Col>
+        <Col span={8}>
           <Slider
             min={1}
             max={20}
@@ -71,6 +89,71 @@ export default function Config() {
           />
         </Col>
       </Row>
+
+      <Row>
+        <Col span={4}>
+          <p>low band</p>
+        </Col>
+        <Col span={8}>
+          <Slider
+            min={1}
+            max={20}
+            onChange={onChangehandler}
+            value={typeof inputValue === "number" ? inputValue : 0}
+          />
+        </Col>
+        <Col span={4}>
+          <InputNumber
+            min={1}
+            max={20}
+            style={{ margin: "0 16px" }}
+            value={inputValue}
+            onChange={onChangehandler}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col span={4}>
+          <p>other band</p>
+        </Col>
+        <Col span={8}>
+          <Slider
+            min={1}
+            max={20}
+            onChange={onChangehandler}
+            value={typeof inputValue === "number" ? inputValue : 0}
+          />
+        </Col>
+        <Col span={4}>
+          <InputNumber
+            min={1}
+            max={20}
+            style={{ margin: "0 16px" }}
+            value={inputValue}
+            onChange={onChangehandler}
+          />
+        </Col>
+      </Row>
+      <Select
+        mode="multiple"
+        allowClear
+        style={{ width: "100%" }}
+        placeholder="Please select"
+        defaultValue={["5min", "10min"]}
+        onChange={handleChangeselect}
+      >
+        {children}
+      </Select>
+      <Select
+        mode="multiple"
+        allowClear
+        style={{ width: "100%" }}
+        placeholder="Please select"
+        defaultValue={["5", "10"]}
+        onChange={handleChangeselect}
+      >
+        {children1}
+      </Select>
     </div>
   );
 }
