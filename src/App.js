@@ -4,7 +4,12 @@ import "./styles.css";
 import { useState } from "react";
 import { Drawer, Button, Menu } from "antd";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useHistory
+} from "react-router-dom";
 
 import "antd/dist/antd.css";
 
@@ -23,10 +28,15 @@ import {
 } from "@ant-design/icons";
 
 export default function App() {
+  let history = useHistory();
   const { SubMenu } = Menu;
   const [visible, setVisible] = useState(false);
   const showDrawer = () => {
     setVisible(true);
+  };
+
+  const onHome = () => {
+    history.push("./home");
   };
   const onClose = () => {
     setVisible(false);
@@ -43,7 +53,7 @@ export default function App() {
           Menu
         </Button>
         <Drawer
-          title="Basic Drawer"
+          title="Tradflix"
           placement="left"
           closable={false}
           onClose={onClose}
@@ -51,20 +61,26 @@ export default function App() {
         >
           <Menu
             onClick={handleClick}
-            style={{ width: 220 }}
+            style={{ width: 230 }}
             defaultSelectedKeys={["1"]}
             defaultOpenKeys={["sub1"]}
             mode="inline"
           >
-            <Menu.Item key="1" icon={<MailOutlined />}>
-              Option 1
+            <Menu.Item key="1" icon={<MailOutlined />} onClick={onHome}>
+              Home
+            </Menu.Item>
+            <Menu.Item key="2" icon={<MailOutlined />}>
+              Watch List
+            </Menu.Item>
+            <Menu.Item key="3" icon={<MailOutlined />}>
+              News
             </Menu.Item>
             <SubMenu
               key="sub1"
               title={
                 <span>
                   <MailOutlined />
-                  <span>Navigation One</span>
+                  <span>Configuration</span>
                 </span>
               }
             >
@@ -77,29 +93,18 @@ export default function App() {
                 <Menu.Item key="4">Option 4</Menu.Item>
               </Menu.ItemGroup>
             </SubMenu>
-            <SubMenu
-              key="sub2"
-              icon={<AppstoreOutlined />}
-              title="Navigation Two"
-            >
-              <Menu.Item key="5">Option 5</Menu.Item>
-              <Menu.Item key="6">Option 6</Menu.Item>
-              <SubMenu key="sub3" title="Submenu">
-                <Menu.Item key="7">Option 7</Menu.Item>
-                <Menu.Item key="8">Option 8</Menu.Item>
-              </SubMenu>
-            </SubMenu>
+
             <SubMenu
               key="sub4"
               title={
                 <span>
                   <SettingOutlined />
-                  <span>Navigation Three</span>
+                  <span>Navigation pages</span>
                 </span>
               }
             >
-              <Menu.Item key="9">Option 9</Menu.Item>
-              <Menu.Item key="10">Option 10</Menu.Item>
+              <Menu.Item key="9">Stock view</Menu.Item>
+              <Menu.Item key="10">Chart 1</Menu.Item>
               <Menu.Item key="11">Option 11</Menu.Item>
               <Menu.Item key="12">Option 12</Menu.Item>
             </SubMenu>
